@@ -1,0 +1,7 @@
+.nav_container {
+  @apply flex flex-col space-y-2 md:space-y-0 items-center justify-center md:justify-between lg:container px-4 py-4  md:flex-row md:px-6;
+}
+
+.nav_items {
+  @apply flex items-center justify-center flex-wrap md:flex-row text-secondary-500 px-3 py-2 space-x-4 md:space-x-8 uppercase md:mx-12 font-medium text-sm md:text-base;
+}

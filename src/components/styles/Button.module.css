@@ -1,0 +1,4 @@
+.button {
+  @apply bg-primary-500 rounded-full py-2 px-4 w-32 text-sm md:text-base md:w-40 text-white;
+  @apply hover:bg-primary-600;
+}
