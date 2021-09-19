@@ -7,8 +7,14 @@ export default function Home() {
     let s = d.getSeconds();
     let m = d.getMinutes();
     let h = d.getHours();
-    return  ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
-  }
+    return (
+      ('0' + h).substr(-2) +
+      ':' +
+      ('0' + m).substr(-2) +
+      ':' +
+      ('0' + s).substr(-2)
+    );
+  };
 
   return (
     <main className='flex flex-col min-h-screen'>
@@ -39,9 +45,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-primary-500 p-8 flex items-center justify-center text-secondary-500">
-      Asu  
-    </section>
+      <section className='bg-primary-500 p-8 flex items-center justify-center text-secondary-500'>
+        {time()}
+      </section>
       <Projects />
       <Social />
       <Footer />
