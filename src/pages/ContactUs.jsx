@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Footer } from '@/components';
-import { isEmail, isAlpha } from 'validator';
+import { isEmail, isAlpha,isInt } from 'validator';
 import { useDispatch, useSelector } from 'react-redux';
 import { addData } from '@/store/Form';
+import { Link } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 
 function ContactUs() {
+  const history = useHistory();
   const form = useSelector((state) => state);
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -21,7 +24,7 @@ function ContactUs() {
     phone: '',
   });
 
-  const [hidden, setHidden] = useState(true);
+  const [isSubmit, setSubmit] = useState(false);
 
   const handleChange = (e) => {
     const newData = e.target.value;
@@ -45,13 +48,13 @@ function ContactUs() {
 
     if (!formData.fullName) {
       newError.fullName = 'Nama Lengkap wajib diisi!';
-    } else if (!isAlpha(formData.full_name.replace(/\s/g, ''))) {
+    } else if (!isAlpha(formData.fullName.replace(/\s/g, ''))) {
       newError.fullName = 'Nama lengkap harus diisi huruf!';
     }
 
     if (!formData.phone) {
       newError.phone = 'No. Handphone wajib diisi!';
-    } else if (!isInt(formData.num_phone)) {
+    } else if (!isInt(formData.phone)) {
       newError.phone = 'No. Handphone harus angka!';
     } else if (formData.phone.length > 14 || formData.phone.length < 9) {
       newError.phone =
@@ -66,6 +69,10 @@ function ContactUs() {
     const findErrors = validate();
     if (Object.keys(findErrors).some((error) => error !== '')) {
       setError(findErrors);
+    }
+    const isNoError = Object.keys(error).filter((d) => error[d] !== '').length === 0
+    if(isNoError) {
+     history.push('/review') 
     }
   };
 
@@ -187,9 +194,9 @@ function ContactUs() {
             ></textarea>
           </div>
         </form>
-        <Button className='py-2 px-4' onClick={handleSubmit}>
-          Submit
-        </Button>
+          <Button className='py-2 px-4' onClick={handleSubmit}>
+            Submit
+          </Button>
       </section>
     </main>
   );
